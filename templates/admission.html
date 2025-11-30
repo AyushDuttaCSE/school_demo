@@ -1,32 +1,47 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Admission Form</h2>
-<form method="post">
-  {{ form.hidden_tag() }}
-  <div>
-    {{ form.student_name.label }}<br>
-    {{ form.student_name(size=40) }}
-  </div>
-  <div>
-    {{ form.student_class.label }}<br>
-    {{ form.student_class(size=40) }}
-  </div>
-  <div>
-    {{ form.age.label }}<br>
-    {{ form.age() }}
-  </div>
-  <div>
-    {{ form.parent_email.label }}<br>
-    {{ form.parent_email(size=40) }}
-  </div>
-  <div>
-    {{ form.phone.label }}<br>
-    {{ form.phone(size=20) }}
-  </div>
-  <div>
-    {{ form.message.label }}<br>
-    {{ form.message(rows=4, cols=50) }}
-  </div>
-  <div><button type="submit">Submit</button></div>
-</form>
+<h2 class="text-center mb-4">Admission Form</h2>
+
+<div class="col-md-8 offset-md-2">
+    <div class="card shadow p-4">
+
+        <form method="POST">
+            {{ form.hidden_tag() }}
+
+            <div class="mb-3">
+                {{ form.student_name.label }}  
+                {{ form.student_name(class="form-control") }}
+            </div>
+
+            <div class="mb-3">
+                {{ form.student_class.label }}  
+                {{ form.student_class(class="form-control") }}
+            </div>
+
+            <div class="mb-3">
+                {{ form.age.label }}  
+                {{ form.age(class="form-control") }}
+            </div>
+
+            <div class="mb-3">
+                {{ form.parent_email.label }}  
+                {{ form.parent_email(class="form-control") }}
+            </div>
+
+            <div class="mb-3">
+                {{ form.phone.label }}  
+                {{ form.phone(class="form-control") }}
+            </div>
+
+            <div class="mb-3">
+                {{ form.message.label }}
+                {{ form.message(class="form-control", rows="3") }}
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Submit</button>
+        </form>
+
+    </div>
+</div>
+
 {% endblock %}

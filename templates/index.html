@@ -1,17 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
-<link rel="stylesheet" href="styles.css">
-<h2>Welcome to My School</h2>
-<section>
-  <h3>Latest Notices</h3>
-  {% if notices %}
-    <ul>
-      {% for n in notices %}
-        <li><strong>{{ n.title }}</strong> — {{ n.date.strftime('%d %b %Y') }}</li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No notices yet.</p>
-  {% endif %}
-</section>
+
+<h2 class="mb-4 text-center fw-bold">Welcome to Our School</h2>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h5>Latest Notices</h5>
+            </div>
+
+            <ul class="list-group list-group-flush">
+                {% for notice in notices %}
+                <li class="list-group-item">
+                    <h6 class="fw-bold">{{ notice.title }}</h6>
+                    <small class="text-muted">{{ notice.date.strftime("%d %B %Y") }}</small>
+                    <p>{{ notice.content }}</p>
+                </li>
+                {% else %}
+                <li class="list-group-item text-center">No notices available.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+</div>
+
 {% endblock %}

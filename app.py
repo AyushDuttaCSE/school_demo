@@ -10,6 +10,9 @@ from config import Config
 import os
 from datetime import datetime
 
+# -----------------------
+# App & Config
+# -----------------------
 app = Flask(__name__)
 app.config.from_object(Config)
 
@@ -18,6 +21,13 @@ migrate = Migrate(app, db)
 
 login_manager = LoginManager(app)
 login_manager.login_view = "admin_login"
+
+# -----------------------
+# Context Processor for now()
+# -----------------------
+@app.context_processor
+def inject_now():
+    return {'now': datetime.utcnow}
 
 # -----------------------
 # Models
@@ -68,7 +78,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField("Login")
 
 # -----------------------
-# Login loader
+# Login Loader
 # -----------------------
 @login_manager.user_loader
 def load_user(user_id):
@@ -125,7 +135,6 @@ def admin_logout():
     logout_user()
     return redirect(url_for("admin_login"))
 
-# Simple route to add a notice (in production make a proper form + check rights)
 @app.route("/admin/add_notice", methods=["POST"])
 @login_required
 def add_notice():
@@ -138,17 +147,15 @@ def add_notice():
         flash("Notice added", "success")
     return redirect(url_for("admin_dashboard"))
 
-# Serve uploaded files (if you allow uploads)
 @app.route('/uploads/<path:filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 # -----------------------
-# CLI helper: create admin if none exists
+# CLI helper: create admin
 # -----------------------
 @app.cli.command("create-admin")
 def create_admin():
-    """Create an admin user (run: flask create-admin)"""
     import getpass
     email = input("Admin email: ").strip()
     name = input("Admin name: ").strip()
