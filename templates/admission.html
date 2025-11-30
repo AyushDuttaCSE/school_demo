@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Admission Form</h2>
+<form method="post">
+  {{ form.hidden_tag() }}
+  <div>
+    {{ form.student_name.label }}<br>
+    {{ form.student_name(size=40) }}
+  </div>
+  <div>
+    {{ form.student_class.label }}<br>
+    {{ form.student_class(size=40) }}
+  </div>
+  <div>
+    {{ form.age.label }}<br>
+    {{ form.age() }}
+  </div>
+  <div>
+    {{ form.parent_email.label }}<br>
+    {{ form.parent_email(size=40) }}
+  </div>
+  <div>
+    {{ form.phone.label }}<br>
+    {{ form.phone(size=20) }}
+  </div>
+  <div>
+    {{ form.message.label }}<br>
+    {{ form.message(rows=4, cols=50) }}
+  </div>
+  <div><button type="submit">Submit</button></div>
+</form>
+{% endblock %}
