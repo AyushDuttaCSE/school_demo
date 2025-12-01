@@ -21,22 +21,37 @@
 <body>
 
 <nav class="navbar navbar-expand-lg">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="/">My School</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon bg-light"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
+  <div class="container d-flex align-items-center">
 
-        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="/admission">Admission</a></li>
-        <li class="nav-item"><a class="nav-link" href="/admin/login">Admin</a></li>
+      <!-- Logo + School Name -->
+      <div class="d-flex align-items-center gap-3">
+          <img src="{{ url_for('static', filename='images/logo.png') }}" 
+               alt="School Logo" 
+               style="height: 70px; width:70px; object-fit: cover; border-radius: 50%; background:white; padding:5px;">
 
-      </ul>
-    </div>
+          <div>
+              <a class="navbar-brand fw-bold" href="/" style="margin:0;">St. Albert Public School</a>
+              <p style="margin: 0; font-size: 14px; opacity: 0.9; color: white;">Affiliated to CBSE | Estd. 2022</p>
+          </div>
+      </div>
+
+      <!-- Mobile Toggle Button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon bg-light"></span>
+      </button>
+
+      <!-- Navigation Buttons (Right-Aligned) -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="/admission">Admission</a></li>
+              <li class="nav-item"><a class="nav-link" href="/admin/login">Admin</a></li>
+          </ul>
+      </div>
+
   </div>
 </nav>
+
 
 <div class="container mt-4">
     {% block content %}{% endblock %}
